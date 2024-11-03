@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>changki123 history</title>
+    <style>
+        /* 기본 스타일 설정 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: #333;
+            transition: background-color 0.5s ease; /* 배경색 전환 효과 */
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+        .section {
+            min-width: 50vw;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .year {
+            font-size: 1.8em;
+            color: #444;
+            margin-bottom: 10px;
+        }
+        .events {
+            font-size: 1.2em;
+            text-align: center;
+        }
+        /* 진행 상태 표시 막대 */
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #ddd;
+            z-index: 10;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #4CAF50;
+            transition: width 0.5s ease;
+        }
+        .footer {
+            width: 100vw;
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 40px;
+            position: absolute;
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="timeline">
+    <div class="section">
+        <div class="year">2005</div>
+        <div class="events">초등학교 입학<br>ICT 교육</div>
+    </div>
+    <div class="section">
+        <div class="year">2006</div>
+        <div class="events">ICT 교육활동<br>모범어린이상</div>
+    </div>
+    <div class="section">
+        <div class="year">2007</div>
+        <div class="events">ICT 교육활동</div>
+    </div>
+    <div class="section">
+        <div class="year">2008</div>
+        <div class="events">ICT 교육활동<br>컴퓨터 정보화 교육<br>ITQ - 아래한글 취득<br>워드프로세서(3급) 취득</div>
+    </div>
+    <div class="section">
+        <div class="year">2009</div>
+        <div class="events">정보통신기술교육<br>선행어린이표창</div>
+    </div>
+    <div class="section">
+        <div class="year">2010</div>
+        <div class="events">정보통신기술교육</div>
+    </div>
+    <div class="section">
+        <div class="year">2011</div>
+        <div class="events">중학교 입학<br>기계과학 경진대회 은상<br>게임메이커 스튜디오 입문</div>
+    </div>
+    <div class="section">
+        <div class="year">2012</div>
+        <div class="events">기계과학 조립대회 동상<br>아방스 커뮤니티 활동<br>CrazyGM, PlayGM 카페 활동<br>간단한 플랫포머 게임 제작<br>전쟁게임 모티브 슈팅게임 제작<br>디펜스 난신이다 게임 제작<br>간단한 장애물피하기 게임제작<br>간단한 rpg게임 제작</div>
+    </div>
+    <div class="section">
+        <div class="year">2013</div>
+        <div class="events">3개년 개근상<br>아방스 커뮤니티 활동<br>CrazyGM, PlayGM 카페 활동<br>경로를 지정한 컴퓨터와 대결하는 레이싱 게임 제작<br>1:1 리그오브레전드 모방게임 제작<br>탱크 게임 제작<br>뭔지도 모르겠는 농부디펜스 제작<br>콤보와 보스, 체력바를 도입한 rpg 게임 제작<br>여러가지 트릭들을 도입한 2인 피하기 게임 제작</div>
+    </div>
+    <div class="section">
+        <div class="year">2014</div>
+        <div class="events">고등학교 입학<br>모범상<br>2학기 선도부원<br>신문읽기반 동아리 반장</div>
+    </div>
+    <div class="section">
+        <div class="year">2015</div>
+        <div class="events">모범상<br>요리조리반 모둠 조장<br>1학기 과학부장<br>ITBank 교육 수료: C, C++, Java 언어 교육</div>
+    </div>
+    <div class="section">
+        <div class="year">2016</div>
+        <div class="events">본교 1학기 회장 선출<br>위탁교육(컴퓨터보안과) 성적우수상<br>리눅스반 : 자율동아리 참여<br>오버워치 백과사전 어플리케이션 제작<br>2016.10 : 정보처리기능사 취득<br>2016.12 : 정보기기운용기능사 취득<br>2016.12 : 운전면허 2종 보통 취득</div>
+    </div>
+    <div class="section">
+        <div class="year">2017</div>
+        <div class="events">대진대학교 컴퓨터공학과 입학<br>Database application system lab. 활동</div>
+    </div>
+    <div class="section">
+        <div class="year">2018</div>
+        <div class="events">2018.01.15 : 기술행정병 지원 입대<br>C4I 운용병: 국방망 관리 및 운용 담당<br>html로 다양한 정적사이트 구현</div>
+    </div>
+    <div class="section">
+        <div class="year">2019</div>
+        <div class="events">.bat 파일로 퀴즈 맞추기 게임 제작<br>.bat 파일로 개구리 게임 제작<br>2019.09.17 : 병장 만기 전역</div>
+    </div>
+    <div class="section">
+        <div class="year">2021</div>
+        <div class="events">영등포문화재단, 후원전시 '설탕과 소금' 솔티 캬라멜팀 참여<br>Unity 엔진을 사용한 게임 작품<br><a href="https://www.ydpcf.or.kr/postview.do?bid=2&pid=323" target="_blank">포스터 링크</a></div>
+    </div>
+    <div class="section">
+        <div class="year">2022</div>
+        <div class="events">2022.08 ~ 2023.01 : K-Digital Training (KDT) 교육<br>Spring / OracleDB를 활용한 웹 개발<br>방 대여 서비스 사이트 제작</div>
+    </div>
+    <div class="section">
+        <div class="year">2023</div>
+        <div class="events">2023.12 ~ 2024.04 : 청년취업사관학교 새싹 교육<br>[AWS 부트캠프] 클라우드 아키텍트 플러스<br>구독자들에게 최신뉴스를 요약 및 전송해주는 서비스 구현<br>AI를 활용해 닮은 포켓몬을 알려주는 서비스 제작<br>2023.12 : AWS Cloud Practitioner Essentials 수료<br>2023.12 : AWS Technical Essentials 수료</div>
+    </div>
+
+    <div class="section">
+        <div class="year">2024</div>
+        <div class="events">2024.01 : Architecting on AWS 수료<br>2024.04 : Solutions Architect - Associate 취득<br>2024.06 : Data Engineer - Associate 취득<br>2024.08 : 대진대학교 졸업<br>2024.10 : ㈜웰데이타시스템 클라우드사업본부 기술운영팀 입사<br>네이버클라우드플랫폼 공인교육 - Professional 과정 수료</div>
+    </div>
+</div>
+
+<div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<div class="footer">
+    © 2024 changki123. All rights reserved.
+</div>
+
+<script>
+    const sections = document.querySelectorAll('.section');
+    const progressBar = document.getElementById('progress-bar');
+    let currentIndex = 0;
+    let isScrolling = false;
+
+    // 시작 색상과 끝 색상
+    const startColor = [255, 255, 200]; // 옅은 노란색 (RGB: #FFFFC8)
+    const endColor = [255, 200, 200]; // 옅은 분홍색 (RGB: #FFC8C8)
+
+    function interpolateColor(start, end, factor) {
+        return start.map((startValue, i) => Math.round(startValue + (end[i] - startValue) * factor));
+    }
+
+    window.addEventListener('wheel', (event) => {
+        if (isScrolling) return;
+
+        if (event.deltaY > 0) {
+            currentIndex = Math.min(currentIndex + 2, sections.length - 2);
+        } else {
+            currentIndex = Math.max(currentIndex - 2, 0);
+        }
+
+        sections[currentIndex].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+
+        // 스크롤 진행률을 계산하여 색상 보간
+        const progressFactor = currentIndex / (sections.length - 2);
+        const [r, g, b] = interpolateColor(startColor, endColor, progressFactor);
+        document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+        // 진행 상태 바 업데이트
+        const progressWidth = progressFactor * 100;
+        progressBar.style.width = `${progressWidth}%`;
+
+        isScrolling = true;
+        setTimeout(() => {
+            isScrolling = false;
+        }, 500);
+    });
+</script>
+
+</body>
+</html>
