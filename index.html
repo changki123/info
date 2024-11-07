@@ -30,6 +30,15 @@
         z-index: 1;
     }
 
+    /* 본문 콘텐츠 설정 */
+    .content {
+        position: relative;
+        z-index: 2; /* 오버레이 위에 표시되도록 설정 */
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
     .container {
       position: relative;
       width: 100%;
@@ -256,7 +265,7 @@ function newColour() {
 
 
 </head>
-<body>
+<body class="content">
   <div class="container">
     <button class="floating-button" onclick="window.open('/info/aaaaa.html', '_blank')">History</button>
     <button class="floating-button" onclick="playAudio()">Play</button>
