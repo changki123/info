@@ -266,55 +266,57 @@ function newColour() {
 
 </head>
 <body>
-  <div class="container content">
-    <button class="floating-button" onclick="window.open('/info/aaaaa.html', '_blank')">History</button>
-    <button class="floating-button" onclick="playAudio()">Play</button>
-    <button class="floating-button" onclick="window.location.href='https://www.naver.com/'">BBB</button>
-    <button class="floating-button" onclick="window.location.href='https://changki.tistory.com/'">Foundation</button>
+  <div class="content">
+    <div class="container">
+      <button class="floating-button" onclick="window.open('/info/aaaaa.html', '_blank')">History</button>
+      <button class="floating-button" onclick="playAudio()">Play</button>
+      <button class="floating-button" onclick="window.location.href='https://www.naver.com/'">BBB</button>
+      <button class="floating-button" onclick="window.location.href='https://changki.tistory.com/'">Foundation</button>
+    </div>
+  
+    <script>
+      document.querySelectorAll('.floating-button').forEach((button, index) => {
+        const randomDuration = Math.floor(Math.random() * 15) + 12; // 랜덤 지속 시간
+        const randomDelay = Math.floor(Math.random() * 10) + 1; // 랜덤 시작 시간(딜레이)
+  
+        // 랜덤한 위치 값을 생성
+        const x1 = Math.floor(Math.random() * 81) - 41; // -20vw ~ +20vw
+        const y1 = Math.floor(Math.random() * 61) - 31; // -15vh ~ +15vh
+        const x2 = Math.floor(Math.random() * 82) - 42; // -25vw ~ +25vw
+        const y2 = Math.floor(Math.random() * 62) - 32; // -20vh ~ +20vh
+        const x3 = Math.floor(Math.random() * 83) - 43; // -15vw ~ +15vw
+        const y3 = Math.floor(Math.random() * 63) - 33; // -25vh ~ +25vh
+  
+        // keyframes을 동적으로 생성
+        const keyframes = `
+          @keyframes float${index} {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(${x1}vw, ${y1}vh) rotate(45deg); }
+            50% { transform: translate(${x2}vw, ${y2}vh) rotate(90deg); }
+            75% { transform: translate(${x3}vw, ${y3}vh) rotate(135deg); }
+            100% { transform: translate(${x2}vw, ${y2}vh) rotate(180deg); }
+          }
+        `;
+  
+        // 스타일 시트에 새로운 keyframes 추가
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+  
+        // 버튼에 애니메이션 적용
+        button.style.animation = `float${index} ${randomDuration}s infinite alternate ease-in-out`;
+        button.style.animationDelay = `${randomDelay}s`;
+      });
+  
+      function playAudio() {
+              var audio = document.getElementById("backgroundMusic");
+              if (audio.paused) {
+                  audio.play();
+              } else {
+                  audio.pause();
+              }
+          }
+    </script>
+    <audio id="backgroundMusic" src="/info/secret/fentasi.mp3" loop></audio>
   </div>
-
-  <script>
-    document.querySelectorAll('.floating-button').forEach((button, index) => {
-      const randomDuration = Math.floor(Math.random() * 15) + 12; // 랜덤 지속 시간
-      const randomDelay = Math.floor(Math.random() * 10) + 1; // 랜덤 시작 시간(딜레이)
-
-      // 랜덤한 위치 값을 생성
-      const x1 = Math.floor(Math.random() * 81) - 41; // -20vw ~ +20vw
-      const y1 = Math.floor(Math.random() * 61) - 31; // -15vh ~ +15vh
-      const x2 = Math.floor(Math.random() * 82) - 42; // -25vw ~ +25vw
-      const y2 = Math.floor(Math.random() * 62) - 32; // -20vh ~ +20vh
-      const x3 = Math.floor(Math.random() * 83) - 43; // -15vw ~ +15vw
-      const y3 = Math.floor(Math.random() * 63) - 33; // -25vh ~ +25vh
-
-      // keyframes을 동적으로 생성
-      const keyframes = `
-        @keyframes float${index} {
-          0% { transform: translate(0, 0) rotate(0deg); }
-          25% { transform: translate(${x1}vw, ${y1}vh) rotate(45deg); }
-          50% { transform: translate(${x2}vw, ${y2}vh) rotate(90deg); }
-          75% { transform: translate(${x3}vw, ${y3}vh) rotate(135deg); }
-          100% { transform: translate(${x2}vw, ${y2}vh) rotate(180deg); }
-        }
-      `;
-
-      // 스타일 시트에 새로운 keyframes 추가
-      const styleSheet = document.styleSheets[0];
-      styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-
-      // 버튼에 애니메이션 적용
-      button.style.animation = `float${index} ${randomDuration}s infinite alternate ease-in-out`;
-      button.style.animationDelay = `${randomDelay}s`;
-    });
-
-    function playAudio() {
-            var audio = document.getElementById("backgroundMusic");
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-  </script>
-<audio id="backgroundMusic" src="/info/secret/fentasi.mp3" loop></audio>
 </body>
 </html>
