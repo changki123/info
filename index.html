@@ -306,7 +306,8 @@ function newColour() {
         button.style.animation = `float${index} ${randomDuration}s infinite alternate ease-in-out`;
         button.style.animationDelay = `${randomDelay}s`;
       });
-  
+
+      document.getElementById('backgroundMusic').volume = 0.5;
       function playAudio() {
               var audio = document.getElementById("backgroundMusic");
               if (audio.paused) {
