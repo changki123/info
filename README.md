@@ -1,4 +1,4 @@
-# 어 블로그다 베껴가라 ctrl + C, ctrl + V IS JUSTICE
+# 필요하신분 알아서 잘 쓰시면됩니다.
 
 https://changki.tistory.com/
 
