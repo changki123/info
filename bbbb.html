@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans KR', Meiryo, sans-serif;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        /* 배경 고정 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+        
+        /* 반투명 오버레이 */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }
+        
+        /* 히어로 섹션 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 20px;
+            font-weight: normal;
+            line-height: 2.5;
+            color: #333;
+            margin-bottom: 60px;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.8);
+        }
+        
+        /* 스크롤 힌트 */
+        .scroll-hint {
+            font-size: 12px;
+            color: #999;
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* 컨텐츠 섹션 */
+        .content-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+        }
+        
+        .content-box {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 60px 40px;
+            backdrop-filter: blur(10px);
+            border-radius: 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+            letter-spacing: 3px;
+        }
+        
+        .profile-text {
+            text-align: center;
+            font-size: 15px;
+            line-height: 2.2;
+            color: #555;
+        }
+        
+        .profile-text p {
+            margin-bottom: 12px;
+        }
+        
+        /* 갤러리 */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1;
+            background: rgba(200, 200, 200, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        
+        .gallery-item:hover {
+            background: rgba(200, 200, 200, 0.5);
+            transform: scale(1.05);
+        }
+        
+        /* 스킬 리스트 */
+        .skills-list {
+            text-align: center;
+            font-size: 15px;
+            line-height: 2.5;
+            color: #555;
+        }
+        
+        /* 푸터 */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        footer p {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+        
+        footer a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 13px;
+        }
+        
+        footer a:hover {
+            color: #667eea;
+        }
+        
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 16px;
+                line-height: 2.2;
+            }
+            
+            .content-box {
+                padding: 40px 25px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            h2 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <h1>
+            대학에서 디자인을 중심으로 미술의 기초를 배웠습니다.<br>
+            80~90년대 애니메이션과 만화 스타일의 그림을 잘 그립니다.
+        </h1>
+        <div class="scroll-hint">SCROLL ↓</div>
+    </section>
+    
+    <!-- Profile -->
+    <section class="content-section">
+        <div class="content-box">
+            <h2>PROFILE</h2>
+            <div class="profile-text">
+                <p><strong>이름</strong> 홍길동</p>
+                <p><strong>생년월일</strong> 1995.01.01</p>
+                <p><strong>출신</strong> 서울특별시</p>
+                <p><strong>학력</strong> ○○대학교 디자인학과 졸업</p>
+                <p><strong>경력</strong> 프리랜서 디자이너 3년</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Works -->
+    <section class="content-section">
+        <div class="content-box">
+            <h2>WORKS</h2>
+            <div class="gallery">
+                <div class="gallery-item">작품 1</div>
+                <div class="gallery-item">작품 2</div>
+                <div class="gallery-item">작품 3</div>
+                <div class="gallery-item">작품 4</div>
+                <div class="gallery-item">작품 5</div>
+                <div class="gallery-item">작품 6</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills -->
+    <section class="content-section">
+        <div class="content-box">
+            <h2>SKILLS</h2>
+            <div class="skills-list">
+                <p>Adobe Photoshop / Illustrator</p>
+                <p>CLIP STUDIO PAINT</p>
+                <p>캐릭터 디자인 · 일러스트 제작</p>
+                <p>로고 디자인 · 브랜딩</p>
+                <p>2D 애니메이션</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact -->
+    <section class="content-section">
+        <div class="content-box">
+            <h2>CONTACT</h2>
+            <div class="profile-text">
+                <p><strong>Email</strong> your.email@example.com</p>
+                <p><strong>Twitter</strong> @youraccount</p>
+                <p><strong>Instagram</strong> @youraccount</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Portfolio Site</p>
+        <p>
+            <a href="#profile">PROFILE</a>
+            <a href="#works">WORKS</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#contact">CONTACT</a>
+        </p>
+    </footer>
+</body>
+</html>
