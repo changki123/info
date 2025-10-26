@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>changki123 history</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Arial', 'Malgun Gothic', sans-serif;
+            color: #333;
+            transition: background-color 0.5s ease;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+        .section {
+            min-width: 50vw;
+            height: 100vh;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .year {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .events {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            max-width: 90%;
+            perspective: 1000px;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        /* 스크롤바 스타일 */
+        .events::-webkit-scrollbar {
+            width: 8px;
+        }
+        .events::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        .events::-webkit-scrollbar-thumb {
+            background: rgba(52, 152, 219, 0.5);
+            border-radius: 10px;
+        }
+        
+        /* 카드 스타일 */
+        .event-card {
+            background: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            
+            /* 애니메이션 초기 상태 */
+            opacity: 0;
+            transform: translate(var(--random-x, 0), var(--random-y, 0)) 
+                       rotate(var(--random-rotate, 0deg)) 
+                       scale(0.3);
+        }
+        
+        /* 카드가 보일 때 애니메이션 */
+        .section.active .event-card {
+            animation: gatherCards 0.8s ease-out forwards;
+        }
+        
+        @keyframes gatherCards {
+            to {
+                opacity: 1;
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+        }
+        
+        /* 호버 효과 */
+        .event-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 카테고리별 색상 */
+        .event-card.education { border-left: 4px solid #3498db; background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%); }
+        .event-card.award { border-left: 4px solid #f39c12; background: linear-gradient(135deg, #ffffff 0%, #fff8e1 100%); }
+        .event-card.work { border-left: 4px solid #27ae60; background: linear-gradient(135deg, #ffffff 0%, #e8f5e9 100%); }
+        .event-card.project { border-left: 4px solid #9b59b6; background: linear-gradient(135deg, #ffffff 0%, #f3e5f5 100%); }
+        .event-card.event { border-left: 4px solid #e67e22; background: linear-gradient(135deg, #ffffff 0%, #fbe9e7 100%); }
+        .event-card.cert { border-left: 4px solid #16a085; background: linear-gradient(135deg, #ffffff 0%, #e0f2f1 100%); }
+        
+        .event-card a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .event-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: #ddd;
+            z-index: 10;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            transition: width 0.5s ease;
+        }
+        
+        .footer {
+            width: 100vw;
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+            position: fixed;
+            bottom: 15px;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="timeline">
+    <div class="section active">
+        <div class="year">2005</div>
+        <div class="events">
+            <div class="event-card education">초등학교 입학</div>
+            <div class="event-card education">ICT 교육</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2006</div>
+        <div class="events">
+            <div class="event-card education">ICT 교육활동</div>
+            <div class="event-card award">모범어린이상</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2007</div>
+        <div class="events">
+            <div class="event-card education">ICT 교육활동</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2008</div>
+        <div class="events">
+            <div class="event-card education">ICT 교육활동</div>
+            <div class="event-card education">컴퓨터 정보화 교육</div>
+            <div class="event-card cert">ITQ - 아래한글 취득</div>
+            <div class="event-card cert">워드프로세서(3급) 취득</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2009</div>
+        <div class="events">
+            <div class="event-card education">정보통신기술교육</div>
+            <div class="event-card award">선행어린이표창</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2010</div>
+        <div class="events">
+            <div class="event-card education">정보통신기술교육</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2011</div>
+        <div class="events">
+            <div class="event-card education">중학교 입학</div>
+            <div class="event-card award">기계과학 경진대회 은상</div>
+            <div class="event-card education">게임메이커 스튜디오 입문</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2012</div>
+        <div class="events">
+            <div class="event-card award">기계과학 조립대회 동상</div>
+            <div class="event-card work">아방스 커뮤니티 활동</div>
+            <div class="event-card work">CrazyGM, PlayGM 카페 활동</div>
+            <div class="event-card project">간단한 플랫포머 게임 제작</div>
+            <div class="event-card project">전쟁게임 모티브 슈팅게임 제작</div>
+            <div class="event-card project">디펜스 난신이다 게임 제작</div>
+            <div class="event-card project">간단한 장애물피하기 게임제작</div>
+            <div class="event-card project">간단한 rpg게임 제작</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2013</div>
+        <div class="events">
+            <div class="event-card award">3개년 개근상</div>
+            <div class="event-card work">아방스 커뮤니티 활동</div>
+            <div class="event-card work">CrazyGM, PlayGM 카페 활동</div>
+            <div class="event-card project">경로를 지정한 컴퓨터와 대결하는 레이싱 게임 제작</div>
+            <div class="event-card project">1:1 리그오브레전드 모방게임 제작</div>
+            <div class="event-card project">탱크 게임 제작</div>
+            <div class="event-card project">뭔지도 모르겠는 농부디펜스 제작</div>
+            <div class="event-card project">콤보와 보스, 체력바를 도입한 rpg 게임 제작</div>
+            <div class="event-card project">여러가지 트릭들을 도입한 2인 피하기 게임 제작</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2014</div>
+        <div class="events">
+            <div class="event-card education">고등학교 입학</div>
+            <div class="event-card award">모범상</div>
+            <div class="event-card work">2학기 선도부원</div>
+            <div class="event-card work">신문읽기반 동아리 반장</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2015</div>
+        <div class="events">
+            <div class="event-card award">모범상</div>
+            <div class="event-card work">요리조리반 모둠 조장</div>
+            <div class="event-card work">1학기 과학부장</div>
+            <div class="event-card education">ITBank 교육 수료: C, C++, Java 언어 교육</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2016</div>
+        <div class="events">
+            <div class="event-card award">본교 1학기 회장 선출</div>
+            <div class="event-card award">위탁교육(컴퓨터보안과) 성적우수상</div>
+            <div class="event-card work">리눅스반 : 자율동아리 참여</div>
+            <div class="event-card project">오버워치 백과사전 어플리케이션 제작</div>
+            <div class="event-card cert">2016.10 : 정보처리기능사 취득</div>
+            <div class="event-card cert">2016.12 : 정보기기운용기능사 취득</div>
+            <div class="event-card cert">2016.12 : 운전면허 2종 보통 취득</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2017</div>
+        <div class="events">
+            <div class="event-card education">대진대학교 컴퓨터공학과 입학</div>
+            <div class="event-card work">Database application system lab. 활동</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2018</div>
+        <div class="events">
+            <div class="event-card work">2018.01.15 : 기술행정병 지원 입대</div>
+            <div class="event-card work">C4I 운용병: 국방망 관리 및 운용 담당</div>
+            <div class="event-card award">분대장 역임</div>
+            <div class="event-card project">html로 다양한 정적사이트 구현</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2019</div>
+        <div class="events">
+            <div class="event-card project">.bat 파일로 퀴즈 맞추기 게임 제작</div>
+            <div class="event-card project">.bat 파일로 개구리 게임 제작</div>
+            <div class="event-card work">2019.09.17 : 병장 만기 전역</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2020</div>
+        <div class="events">
+            <div class="event-card project">nodejs / MongoDB를 활용한 웹 개발</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2021</div>
+        <div class="events">
+            <div class="event-card event">영등포문화재단, 후원전시 '설탕과 소금' 솔티 캬라멜팀 참여</div>
+            <div class="event-card project">Unity 엔진을 사용한 게임 작품</div>
+            <div class="event-card event"><a href="https://www.ydpcf.or.kr/postview.do?bid=2&pid=323" target="_blank">포스터 링크</a></div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2022</div>
+        <div class="events">
+            <div class="event-card education">2022.08 ~ 2023.01 : K-Digital Training (KDT) 교육</div>
+            <div class="event-card project">Spring / OracleDB를 활용한 웹 개발</div>
+            <div class="event-card project">방 대여 서비스 사이트 제작</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2023</div>
+        <div class="events">
+            <div class="event-card education">2023.12 ~ 2024.04 : 청년취업사관학교 새싹 교육</div>
+            <div class="event-card education">[AWS 부트캠프] 클라우드 아키텍트 플러스</div>
+            <div class="event-card project">구독자들에게 최신뉴스를 요약 및 전송해주는 서비스 구현</div>
+            <div class="event-card project">AI를 활용해 닮은 포켓몬을 알려주는 서비스 제작</div>
+            <div class="event-card education">2023.12 : AWS Cloud Practitioner Essentials 수료</div>
+            <div class="event-card education">2023.12 : AWS Technical Essentials 수료</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="year">2024</div>
+        <div class="events">
+            <div class="event-card education">2024.01 : Architecting on AWS 수료</div>
+            <div class="event-card cert">2024.04 : Solutions Architect - Associate 취득</div>
+            <div class="event-card cert">2024.06 : Data Engineer - Associate 취득</div>
+            <div class="event-card education">2024.08 : 대진대학교 졸업</div>
+            <div class="event-card work">2024.10 : ㈜웰데이타시스템 클라우드사업본부 기술운영팀 입사</div>
+            <div class="event-card education">네이버클라우드플랫폼 공인교육 - Professional 과정 수료</div>
+            <div class="event-card event">AWS Community Day 2024 참여</div>
+            <div class="event-card event">2024.11 : 지스타감</div>
+            <div class="event-card project">NCP로 좀보이드 서버 생성 및 운영</div>
+            <div class="event-card event">2024.12 : AWSKRUG 플랫폼엔지니어링 모임</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="year">2025</div>
+        <div class="events">
+            <div class="event-card event">2025.02 : AWS re:Invent reCap for 2024 참여</div>
+            <div class="event-card event">AWSKRUG 서버리스 #serverless 모임 참여</div>
+            <div class="event-card event">2025.03 : AWS 강의실 모임</div>
+            <div class="event-card event">AWS TechCamp</div>
+            <div class="event-card event">AWSKRUG 아키텍처 #architecture 51번째 소모임 참여</div>
+            <div class="event-card project">JavaScript 기반 전체 고객 서버 리소스 부하 분석 계산기 제작</div>
+            <div class="event-card project">2025.04 : 클라우드 서버 대상 리소스 사용량 그래프 자동화 제작</div>
+            <div class="event-card event">ktcloud summit 행사 참여</div>
+            <div class="event-card event">2025.05 : AWS Summit 행사 참여</div>
+            <div class="event-card event">AtCoder 대회 ABC 난이도 참여</div>
+            <div class="event-card event">2025.06 : 제38회 네전따 N.EX.T 행사 참여</div>
+            <div class="event-card event">구름 COMMIT 세션 참여</div>
+            <div class="event-card award">2025.07 : '심각한 테라폼 중독입니다' 도서 이벤트 당첨</div>
+            <div class="event-card event">2025.08 : Alibaba Cloud 데이터베이스 세션 참여</div>
+            <div class="event-card event">NCUC 수도권 남부 소모임 5회 참여</div>
+            <div class="event-card project">2025.09 : 클라우드 자원 사용량 확인 자동화</div>
+            <div class="event-card event">Cloud Native Korea Community Day 2025 행사 참여</div>
+            <div class="event-card event">AWSKRUG 서버리스 #serverless 모임 참여</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<div class="footer">
+    © 2024 changki123. All rights reserved. Feel free to steal.
+</div>
+
+<script>
+    const sections = document.querySelectorAll('.section');
+    const progressBar = document.getElementById('progress-bar');
+    let currentIndex = 0;
+    let isScrolling = false;
+
+    const startColor = [255, 255, 200];
+    const endColor = [255, 200, 200];
+
+    function interpolateColor(start, end, factor) {
+        return start.map((startValue, i) => Math.round(startValue + (end[i] - startValue) * factor));
+    }
+
+    // 랜덤 위치 설정
+    function setRandomPositions() {
+        document.querySelectorAll('.event-card').forEach(card => {
+            const randomX = (Math.random() - 0.5) * 800;
+            const randomY = (Math.random() - 0.5) * 600;
+            const randomRotate = (Math.random() - 0.5) * 360;
+            const delay = Math.random() * 0.4;
+            
+            card.style.setProperty('--random-x', `${randomX}px`);
+            card.style.setProperty('--random-y', `${randomY}px`);
+            card.style.setProperty('--random-rotate', `${randomRotate}deg`);
+            card.style.animationDelay = `${delay}s`;
+        });
+    }
+
+    setRandomPositions();
+
+    window.addEventListener('wheel', (event) => {
+        if (isScrolling) return;
+
+        sections[currentIndex].classList.remove('active');
+
+        if (event.deltaY > 0) {
+            currentIndex = Math.min(currentIndex + 2, sections.length - 2);
+        } else {
+            currentIndex = Math.max(currentIndex - 2, 0);
+        }
+
+        sections[currentIndex].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        sections[currentIndex].classList.add('active');
+
+        const progressFactor = currentIndex / (sections.length - 2);
+        const [r, g, b] = interpolateColor(startColor, endColor, progressFactor);
+        document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+        const progressWidth = progressFactor * 100;
+        progressBar.style.width = `${progressWidth}%`;
+
+        isScrolling = true;
+        setTimeout(() => {
+            isScrolling = false;
+        }, 500);
+    });
+</script>
+
+</body>
+</html>
