@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Cloud Engineer Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
         
         body {
-            font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans KR', Meiryo, sans-serif;
+            font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
             line-height: 1.8;
             color: #333;
         }
@@ -25,7 +25,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -40,7 +40,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             z-index: -1;
         }
         
@@ -56,12 +56,19 @@
         }
         
         .hero h1 {
-            font-size: 20px;
-            font-weight: normal;
-            line-height: 2.5;
-            color: #333;
-            margin-bottom: 60px;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 2.2;
+            color: #2c3e50;
+            margin-bottom: 20px;
             text-shadow: 0 1px 3px rgba(255,255,255,0.8);
+        }
+        
+        .hero p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 60px;
         }
         
         /* 스크롤 힌트 */
@@ -95,68 +102,198 @@
         }
         
         .content-box {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 50px;
             backdrop-filter: blur(10px);
-            border-radius: 0;
+            border-radius: 8px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
         
         h2 {
-            font-size: 18px;
-            font-weight: normal;
+            font-size: 20px;
+            font-weight: 600;
             margin-bottom: 40px;
             text-align: center;
-            color: #333;
-            letter-spacing: 3px;
+            color: #2c3e50;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
         }
         
-        .profile-text {
-            text-align: center;
+        /* Profile */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 20px 30px;
             font-size: 15px;
-            line-height: 2.2;
+            line-height: 1.8;
+        }
+        
+        .profile-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .profile-value {
             color: #555;
         }
         
-        .profile-text p {
+        /* Experience */
+        .experience-item {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .experience-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .experience-period {
+            font-size: 13px;
+            color: #7f8c8d;
+            white-space: nowrap;
+        }
+        
+        .experience-company {
+            font-size: 14px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .experience-details {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .experience-details li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        
+        .experience-details li:before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+        
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skill-category h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .skill-category li {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .skill-category li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+        
+        /* Projects/Achievements */
+        .achievement-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .achievement-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
             margin-bottom: 12px;
         }
         
-        /* 갤러리 */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 30px;
+        .achievement-item p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 8px;
         }
         
-        .gallery-item {
-            aspect-ratio: 1;
-            background: rgba(200, 200, 200, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 13px;
-            transition: all 0.3s;
+        .achievement-tag {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-top: 8px;
         }
         
-        .gallery-item:hover {
-            background: rgba(200, 200, 200, 0.5);
-            transform: scale(1.05);
-        }
-        
-        /* 스킬 리스트 */
-        .skills-list {
+        /* Contact */
+        .contact-info {
             text-align: center;
             font-size: 15px;
             line-height: 2.5;
-            color: #555;
         }
         
-        /* 푸터 */
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-info a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        /* Footer */
         footer {
             text-align: center;
             padding: 60px 20px;
@@ -177,27 +314,43 @@
         }
         
         footer a:hover {
-            color: #667eea;
+            color: #3498db;
         }
         
         /* 반응형 */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 16px;
-                line-height: 2.2;
+                font-size: 18px;
+                line-height: 2;
+            }
+            
+            .hero p {
+                font-size: 14px;
             }
             
             .content-box {
                 padding: 40px 25px;
             }
             
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
+            .profile-grid {
+                grid-template-columns: 1fr;
                 gap: 10px;
             }
             
+            .experience-header {
+                flex-direction: column;
+            }
+            
+            .experience-period {
+                margin-top: 5px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
             h2 {
-                font-size: 16px;
+                font-size: 18px;
             }
         }
     </style>
@@ -206,73 +359,267 @@
     <!-- 히어로 섹션 -->
     <section class="hero">
         <h1>
-            대학에서 디자인을 중심으로 미술의 기초를 배웠습니다.<br>
-            80~90년대 애니메이션과 만화 스타일의 그림을 잘 그립니다.
+            Multi-Cloud Infrastructure Engineer<br>
+            클라우드 인프라 운영 및 자동화 전문
         </h1>
+        <p>
+            AWS, NCP, Alibaba Cloud 등 다양한 클라우드 플랫폼 운영 경험<br>
+            Kubernetes, Terraform, Ansible 기반 인프라 자동화 구축
+        </p>
         <div class="scroll-hint">SCROLL ↓</div>
     </section>
     
     <!-- Profile -->
-    <section class="content-section">
+    <section class="content-section" id="profile">
         <div class="content-box">
             <h2>PROFILE</h2>
-            <div class="profile-text">
-                <p><strong>이름</strong> 홍길동</p>
-                <p><strong>생년월일</strong> 1995.01.01</p>
-                <p><strong>출신</strong> 서울특별시</p>
-                <p><strong>학력</strong> ○○대학교 디자인학과 졸업</p>
-                <p><strong>경력</strong> 프리랜서 디자이너 3년</p>
+            <div class="profile-grid">
+                <div class="profile-label">이름</div>
+                <div class="profile-value">홍길동</div>
+                
+                <div class="profile-label">직무</div>
+                <div class="profile-value">Cloud Infrastructure Engineer / DevOps Engineer</div>
+                
+                <div class="profile-label">경력</div>
+                <div class="profile-value">클라우드 인프라 운영 3년</div>
+                
+                <div class="profile-label">전문분야</div>
+                <div class="profile-value">Multi-Cloud 인프라 운영, Kubernetes, 자동화/모니터링 시스템 구축</div>
+                
+                <div class="profile-label">학력</div>
+                <div class="profile-value">○○대학교 컴퓨터공학과 졸업</div>
             </div>
         </div>
     </section>
     
-    <!-- Works -->
-    <section class="content-section">
+    <!-- Experience -->
+    <section class="content-section" id="experience">
         <div class="content-box">
-            <h2>WORKS</h2>
-            <div class="gallery">
-                <div class="gallery-item">작품 1</div>
-                <div class="gallery-item">작품 2</div>
-                <div class="gallery-item">작품 3</div>
-                <div class="gallery-item">작품 4</div>
-                <div class="gallery-item">작품 5</div>
-                <div class="gallery-item">작품 6</div>
+            <h2>EXPERIENCE</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">O社 AWS 인프라 운영</div>
+                        <div class="experience-company">클라우드 서비스 운영팀</div>
+                    </div>
+                    <div class="experience-period">2023.01 ~ 2024.06</div>
+                </div>
+                <ul class="experience-details">
+                    <li>약 65대 EC2 서버 운영 및 24/7 가용성 관리</li>
+                    <li>Ansible, CloudWatch를 활용한 모니터링 자동화 시스템 구축으로 장애 감지 시간 60% 단축</li>
+                    <li>Auto Scaling 정책 설계 및 최적화, 트래픽 급증 시 자동 확장 기능 구현으로 서비스 안정성 향상</li>
+                    <li>비용 최적화를 위한 Reserved Instance 전환 제안 및 월 약 30% 비용 절감 달성</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">H社 AWS + Zenlayer 하이브리드 클라우드 운영</div>
+                        <div class="experience-company">글로벌 서비스 인프라팀</div>
+                    </div>
+                    <div class="experience-period">2023.07 ~ 2024.03</div>
+                </div>
+                <ul class="experience-details">
+                    <li>AWS 및 Zenlayer 기반 하이브리드 클라우드 인프라 운영 및 관리</li>
+                    <li>서비스 가용성 99.9% 유지, 장애 발생 시 평균 15분 이내 복구 대응</li>
+                    <li>네트워크 트래픽 모니터링 및 CDN 최적화를 통한 글로벌 사용자 경험 개선</li>
+                    <li>인프라 문서화 및 장애 대응 매뉴얼 작성으로 팀 운영 효율성 향상</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">공공 C社 Naver Cloud Platform 운영</div>
+                        <div class="experience-company">공공기관 클라우드 전환 프로젝트</div>
+                    </div>
+                    <div class="experience-period">2023.03 ~ 2024.08</div>
+                </div>
+                <ul class="experience-details">
+                    <li>NKS(Naver Kubernetes Service) 클러스터 운영 및 기술 지원</li>
+                    <li>NKS NodePort 중복 충돌 문제를 Terraform 기반 IaC(Infrastructure as Code) 설정으로 해결, 서비스 장애 사전 예방</li>
+                    <li>컨테이너 리소스 최적화로 클러스터 노드 수 20% 감축 및 비용 절감</li>
+                    <li>개발팀 대상 Kubernetes 교육 자료 작성 및 기술 지원</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">U社 Alibaba Cloud 구축 및 운영</div>
+                        <div class="experience-company">해외 시장 진출 인프라팀</div>
+                    </div>
+                    <div class="experience-period">2023.09 ~ 2024.01</div>
+                </div>
+                <ul class="experience-details">
+                    <li>중국 시장 진출을 위한 Alibaba Cloud 기반 인프라 구축 (ECS 30대 규모)</li>
+                    <li>다중 채널 파일 전송 환경 구축 (FTP, 웹 업로드, HTTP) 및 보안 정책 수립</li>
+                    <li>로컬 환경과 동일한 개발/운영 환경 구성으로 배포 시간 50% 단축</li>
+                    <li>네트워크 레이턴시 모니터링 및 최적화를 통한 사용자 경험 개선</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">공공 D社 NHN Cloud 운영</div>
+                        <div class="experience-company">공공 클라우드 백업 프로젝트</div>
+                    </div>
+                    <div class="experience-period">2024.02 ~ 2024.07</div>
+                </div>
+                <ul class="experience-details">
+                    <li>NHN Cloud 백업 솔루션을 활용한 NKS 데이터 백업 정책 수립 및 설정</li>
+                    <li>일일/주간 자동 백업 스케줄링 구성으로 데이터 보호 강화</li>
+                    <li>백업 복구 테스트 수행 및 RTO(목표 복구 시간) 달성 검증</li>
+                    <li>재해복구(DR) 시나리오 문서화 및 모의훈련 실시</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Achievements -->
+    <section class="content-section" id="achievements">
+        <div class="content-box">
+            <h2>KEY ACHIEVEMENTS</h2>
+            
+            <div class="achievement-item">
+                <h3>📊 사내 보고서 자동화 시스템 구축</h3>
+                <p>Python을 활용한 월간 보고서 DOCX 파일 자동 생성 시스템 개발</p>
+                <p><strong>성과:</strong> 월 8시간 소요되던 수작업을 5분으로 단축 (96% 시간 절감)</p>
+                <span class="achievement-tag">Python</span>
+                <span class="achievement-tag">python-docx</span>
+                <span class="achievement-tag">자동화</span>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>📋 공공기관 주간 점검 자동화</h3>
+                <p>Shell Script 기반 주간 점검 보고서 자동 작성 시스템 구축</p>
+                <p><strong>성과:</strong> 매주 2시간 소요 업무를 완전 자동화, 연간 약 100시간 업무 시간 절감</p>
+                <span class="achievement-tag">Shell Script</span>
+                <span class="achievement-tag">Cron</span>
+                <span class="achievement-tag">자동화</span>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>📈 서버 자원 사용률 모니터링 자동화</h3>
+                <p>매월 1일 자동으로 서버 리소스 사용률 데이터 수집 및 보고서 생성</p>
+                <p><strong>성과:</strong> 실시간 리소스 모니터링으로 장애 예방 및 용량 계획 수립 효율성 향상</p>
+                <span class="achievement-tag">Python</span>
+                <span class="achievement-tag">CloudWatch</span>
+                <span class="achievement-tag">모니터링</span>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>📸 NCP 스냅샷 자동화 시스템</h3>
+                <p>Naver Cloud Functions를 활용한 원하는 시각 자동 스냅샷 및 이미지 생성 시스템 구축</p>
+                <p><strong>성과:</strong> 백업 누락 제로 달성, 데이터 복구 시간 70% 단축</p>
+                <span class="achievement-tag">Cloud Functions</span>
+                <span class="achievement-tag">NCP</span>
+                <span class="achievement-tag">백업 자동화</span>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>🖥️ 사내 모니터링 시스템 개편</h3>
+                <p>기존 모니터링 시스템 대시보드 UI/UX 개선 및 알림 시스템 고도화</p>
+                <p><strong>성과:</strong> 장애 알림 정확도 향상, 대시보드 사용성 개선으로 팀 만족도 상승</p>
+                <span class="achievement-tag">Grafana</span>
+                <span class="achievement-tag">Prometheus</span>
+                <span class="achievement-tag">시스템 개선</span>
             </div>
         </div>
     </section>
     
     <!-- Skills -->
-    <section class="content-section">
+    <section class="content-section" id="skills">
         <div class="content-box">
             <h2>SKILLS</h2>
-            <div class="skills-list">
-                <p>Adobe Photoshop / Illustrator</p>
-                <p>CLIP STUDIO PAINT</p>
-                <p>캐릭터 디자인 · 일러스트 제작</p>
-                <p>로고 디자인 · 브랜딩</p>
-                <p>2D 애니메이션</p>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>☁️ Cloud Platforms</h3>
+                    <ul>
+                        <li>AWS (EC2, S3, RDS, CloudWatch, Auto Scaling)</li>
+                        <li>Naver Cloud Platform (NKS, Cloud Functions)</li>
+                        <li>Alibaba Cloud (ECS, OSS)</li>
+                        <li>NHN Cloud</li>
+                        <li>Zenlayer</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🔧 DevOps & IaC</h3>
+                    <ul>
+                        <li>Kubernetes (K8s, NKS)</li>
+                        <li>Terraform</li>
+                        <li>Ansible</li>
+                        <li>Docker</li>
+                        <li>CI/CD (GitHub Actions, Jenkins)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>📊 Monitoring & Logging</h3>
+                    <ul>
+                        <li>Prometheus</li>
+                        <li>Grafana</li>
+                        <li>CloudWatch</li>
+                        <li>ELK Stack</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>💻 Programming & Scripting</h3>
+                    <ul>
+                        <li>Python (자동화, 스크립팅)</li>
+                        <li>Shell Script (Bash)</li>
+                        <li>YAML</li>
+                        <li>Git / GitHub</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🗄️ Database & Storage</h3>
+                    <ul>
+                        <li>MySQL / PostgreSQL</li>
+                        <li>Redis</li>
+                        <li>S3 / Object Storage</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🌐 Network & Security</h3>
+                    <ul>
+                        <li>VPC / Security Group</li>
+                        <li>Load Balancer</li>
+                        <li>CDN</li>
+                        <li>SSL/TLS</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
     
     <!-- Contact -->
-    <section class="content-section">
+    <section class="content-section" id="contact">
         <div class="content-box">
             <h2>CONTACT</h2>
-            <div class="profile-text">
-                <p><strong>Email</strong> your.email@example.com</p>
-                <p><strong>Twitter</strong> @youraccount</p>
-                <p><strong>Instagram</strong> @youraccount</p>
+            <div class="contact-info">
+                <p><strong>Email</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                <p><strong>GitHub</strong> <a href="https://github.com/youraccount" target="_blank">github.com/youraccount</a></p>
+                <p><strong>LinkedIn</strong> <a href="https://linkedin.com/in/youraccount" target="_blank">linkedin.com/in/youraccount</a></p>
+                <p><strong>Blog</strong> <a href="https://yourblog.com" target="_blank">yourblog.com</a></p>
             </div>
         </div>
     </section>
     
     <!-- Footer -->
     <footer>
-        <p>© 2025 Portfolio Site</p>
+        <p>© 2025 Cloud Engineer Portfolio</p>
         <p>
             <a href="#profile">PROFILE</a>
-            <a href="#works">WORKS</a>
+            <a href="#experience">EXPERIENCE</a>
+            <a href="#achievements">ACHIEVEMENTS</a>
             <a href="#skills">SKILLS</a>
             <a href="#contact">CONTACT</a>
         </p>
