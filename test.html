@@ -13,26 +13,105 @@
             color: #333;
             transition: background-color 0.5s ease;
         }
-        .container {
+        
+        /* 상단 네비게이션 */
+        .top-nav {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            height: 100vh;
-            width: 100%;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
-        .section {
-            min-width: 50vw;
+        
+        .top-nav button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .top-nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .top-nav button.active {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .carousel-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             height: 100vh;
+            width: 100vw;
+            position: relative;
+            perspective: 1500px;
+        }
+        
+        .section {
+            position: absolute;
+            width: 60vw;
+            height: 80vh;
             padding: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 왼쪽 대기 */
+        .section.prev {
+            transform: translateX(-80%) scale(0.7);
+            opacity: 0.3;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* 가운데 활성 */
+        .section.active {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+            z-index: 10;
+        }
+        
+        /* 오른쪽 대기 */
+        .section.next {
+            transform: translateX(80%) scale(0.7);
+            opacity: 0.3;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* 숨김 */
+        .section.hidden {
+            transform: translateX(0) scale(0.5);
+            opacity: 0;
+            z-index: 0;
+            pointer-events: none;
         }
         
         .year {
-            font-size: 2.5em;
+            font-size: 2.8em;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
@@ -49,26 +128,22 @@
             padding: 10px;
         }
         
-        /* 스크롤바 스타일 */
+        /* 스크롤바 숨기기 */
         .events::-webkit-scrollbar {
-            width: 8px;
+            display: none;
         }
-        .events::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-        }
-        .events::-webkit-scrollbar-thumb {
-            background: rgba(52, 152, 219, 0.5);
-            border-radius: 10px;
+        .events {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
         
         /* 카드 스타일 */
         .event-card {
             background: white;
-            padding: 12px 18px;
+            padding: 8px 14px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            font-size: 0.95em;
+            font-size: 0.8em;
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
@@ -78,6 +153,19 @@
             transform: translate(var(--random-x, 0), var(--random-y, 0)) 
                        rotate(var(--random-rotate, 0deg)) 
                        scale(0.3);
+        }
+        
+        /* 월 뱃지 스타일 */
+        .month-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-right: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         
         /* 카드가 보일 때 애니메이션 */
@@ -121,7 +209,7 @@
             width: 100%;
             height: 8px;
             background-color: #ddd;
-            z-index: 10;
+            z-index: 100;
         }
         .progress-bar {
             height: 100%;
@@ -133,18 +221,38 @@
         .footer {
             width: 100vw;
             text-align: center;
-            font-size: 0.9em;
+            font-size: 0.8em;
             color: #555;
             position: fixed;
             bottom: 15px;
-            z-index: 5;
+            z-index: 50;
+        }
+        
+        /* 네비게이션 힌트 */
+        .nav-hint {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #666;
+            font-size: 0.8em;
+            z-index: 50;
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
 
-<div class="container" id="timeline">
-    <div class="section active">
+<div class="top-nav">
+    <button onclick="jumpToYear(0)">2005</button>
+    <button onclick="jumpToYear(5)">2010</button>
+    <button onclick="jumpToYear(10)">2015</button>
+    <button onclick="jumpToYear(15)">2020</button>
+    <button onclick="jumpToYear(20)">2025</button>
+</div>
+
+<div class="carousel-container" id="carousel">
+    <div class="section" data-index="0">
         <div class="year">2005</div>
         <div class="events">
             <div class="event-card education">초등학교 입학</div>
@@ -152,7 +260,7 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="1">
         <div class="year">2006</div>
         <div class="events">
             <div class="event-card education">ICT 교육활동</div>
@@ -160,14 +268,14 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="2">
         <div class="year">2007</div>
         <div class="events">
             <div class="event-card education">ICT 교육활동</div>
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="3">
         <div class="year">2008</div>
         <div class="events">
             <div class="event-card education">ICT 교육활동</div>
@@ -177,7 +285,7 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="4">
         <div class="year">2009</div>
         <div class="events">
             <div class="event-card education">정보통신기술교육</div>
@@ -185,14 +293,14 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="5">
         <div class="year">2010</div>
         <div class="events">
             <div class="event-card education">정보통신기술교육</div>
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="6">
         <div class="year">2011</div>
         <div class="events">
             <div class="event-card education">중학교 입학</div>
@@ -201,7 +309,7 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="7">
         <div class="year">2012</div>
         <div class="events">
             <div class="event-card award">기계과학 조립대회 동상</div>
@@ -215,7 +323,7 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="8">
         <div class="year">2013</div>
         <div class="events">
             <div class="event-card award">3개년 개근상</div>
@@ -230,7 +338,7 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="9">
         <div class="year">2014</div>
         <div class="events">
             <div class="event-card education">고등학교 입학</div>
@@ -240,7 +348,7 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="10">
         <div class="year">2015</div>
         <div class="events">
             <div class="event-card award">모범상</div>
@@ -250,20 +358,20 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="11">
         <div class="year">2016</div>
         <div class="events">
             <div class="event-card award">본교 1학기 회장 선출</div>
             <div class="event-card award">위탁교육(컴퓨터보안과) 성적우수상</div>
             <div class="event-card work">리눅스반 : 자율동아리 참여</div>
             <div class="event-card project">오버워치 백과사전 어플리케이션 제작</div>
-            <div class="event-card cert">2016.10 : 정보처리기능사 취득</div>
-            <div class="event-card cert">2016.12 : 정보기기운용기능사 취득</div>
-            <div class="event-card cert">2016.12 : 운전면허 2종 보통 취득</div>
+            <div class="event-card cert"><span class="month-badge">10월</span>정보처리기능사 취득</div>
+            <div class="event-card cert"><span class="month-badge">12월</span>정보기기운용기능사 취득</div>
+            <div class="event-card cert"><span class="month-badge">12월</span>운전면허 2종 보통 취득</div>
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="12">
         <div class="year">2017</div>
         <div class="events">
             <div class="event-card education">대진대학교 컴퓨터공학과 입학</div>
@@ -271,33 +379,33 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="13">
         <div class="year">2018</div>
         <div class="events">
-            <div class="event-card work">2018.01.15 : 기술행정병 지원 입대</div>
+            <div class="event-card work"><span class="month-badge">01월</span>기술행정병 지원 입대</div>
             <div class="event-card work">C4I 운용병: 국방망 관리 및 운용 담당</div>
             <div class="event-card award">분대장 역임</div>
             <div class="event-card project">html로 다양한 정적사이트 구현</div>
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="14">
         <div class="year">2019</div>
         <div class="events">
             <div class="event-card project">.bat 파일로 퀴즈 맞추기 게임 제작</div>
             <div class="event-card project">.bat 파일로 개구리 게임 제작</div>
-            <div class="event-card work">2019.09.17 : 병장 만기 전역</div>
+            <div class="event-card work"><span class="month-badge">09월</span>병장 만기 전역</div>
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="15">
         <div class="year">2020</div>
         <div class="events">
             <div class="event-card project">nodejs / MongoDB를 활용한 웹 개발</div>
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="16">
         <div class="year">2021</div>
         <div class="events">
             <div class="event-card event">영등포문화재단, 후원전시 '설탕과 소금' 솔티 캬라멜팀 참여</div>
@@ -306,62 +414,62 @@
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="17">
         <div class="year">2022</div>
         <div class="events">
-            <div class="event-card education">2022.08 ~ 2023.01 : K-Digital Training (KDT) 교육</div>
+            <div class="event-card education"><span class="month-badge">08월</span>K-Digital Training (KDT) 교육 (~ 2023.01)</div>
             <div class="event-card project">Spring / OracleDB를 활용한 웹 개발</div>
             <div class="event-card project">방 대여 서비스 사이트 제작</div>
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="18">
         <div class="year">2023</div>
         <div class="events">
-            <div class="event-card education">2023.12 ~ 2024.04 : 청년취업사관학교 새싹 교육</div>
+            <div class="event-card education"><span class="month-badge">12월</span>청년취업사관학교 새싹 교육 (~ 2024.04)</div>
             <div class="event-card education">[AWS 부트캠프] 클라우드 아키텍트 플러스</div>
             <div class="event-card project">구독자들에게 최신뉴스를 요약 및 전송해주는 서비스 구현</div>
             <div class="event-card project">AI를 활용해 닮은 포켓몬을 알려주는 서비스 제작</div>
-            <div class="event-card education">2023.12 : AWS Cloud Practitioner Essentials 수료</div>
-            <div class="event-card education">2023.12 : AWS Technical Essentials 수료</div>
+            <div class="event-card education"><span class="month-badge">12월</span>AWS Cloud Practitioner Essentials 수료</div>
+            <div class="event-card education"><span class="month-badge">12월</span>AWS Technical Essentials 수료</div>
         </div>
     </div>
 
-    <div class="section">
+    <div class="section" data-index="19">
         <div class="year">2024</div>
         <div class="events">
-            <div class="event-card education">2024.01 : Architecting on AWS 수료</div>
-            <div class="event-card cert">2024.04 : Solutions Architect - Associate 취득</div>
-            <div class="event-card cert">2024.06 : Data Engineer - Associate 취득</div>
-            <div class="event-card education">2024.08 : 대진대학교 졸업</div>
-            <div class="event-card work">2024.10 : ㈜웰데이타시스템 클라우드사업본부 기술운영팀 입사</div>
+            <div class="event-card education"><span class="month-badge">01월</span>Architecting on AWS 수료</div>
+            <div class="event-card cert"><span class="month-badge">04월</span>Solutions Architect - Associate 취득</div>
+            <div class="event-card cert"><span class="month-badge">06월</span>Data Engineer - Associate 취득</div>
+            <div class="event-card education"><span class="month-badge">08월</span>대진대학교 졸업</div>
+            <div class="event-card work"><span class="month-badge">10월</span>㈜웰데이타시스템 클라우드사업본부 기술운영팀 입사</div>
             <div class="event-card education">네이버클라우드플랫폼 공인교육 - Professional 과정 수료</div>
             <div class="event-card event">AWS Community Day 2024 참여</div>
-            <div class="event-card event">2024.11 : 지스타감</div>
+            <div class="event-card event"><span class="month-badge">11월</span>지스타감</div>
             <div class="event-card project">NCP로 좀보이드 서버 생성 및 운영</div>
-            <div class="event-card event">2024.12 : AWSKRUG 플랫폼엔지니어링 모임</div>
+            <div class="event-card event"><span class="month-badge">12월</span>AWSKRUG 플랫폼엔지니어링 모임</div>
         </div>
     </div>
     
-    <div class="section">
+    <div class="section" data-index="20">
         <div class="year">2025</div>
         <div class="events">
-            <div class="event-card event">2025.02 : AWS re:Invent reCap for 2024 참여</div>
+            <div class="event-card event"><span class="month-badge">02월</span>AWS re:Invent reCap for 2024 참여</div>
             <div class="event-card event">AWSKRUG 서버리스 #serverless 모임 참여</div>
-            <div class="event-card event">2025.03 : AWS 강의실 모임</div>
+            <div class="event-card event"><span class="month-badge">03월</span>AWS 강의실 모임</div>
             <div class="event-card event">AWS TechCamp</div>
             <div class="event-card event">AWSKRUG 아키텍처 #architecture 51번째 소모임 참여</div>
             <div class="event-card project">JavaScript 기반 전체 고객 서버 리소스 부하 분석 계산기 제작</div>
-            <div class="event-card project">2025.04 : 클라우드 서버 대상 리소스 사용량 그래프 자동화 제작</div>
+            <div class="event-card project"><span class="month-badge">04월</span>클라우드 서버 대상 리소스 사용량 그래프 자동화 제작</div>
             <div class="event-card event">ktcloud summit 행사 참여</div>
-            <div class="event-card event">2025.05 : AWS Summit 행사 참여</div>
+            <div class="event-card event"><span class="month-badge">05월</span>AWS Summit 행사 참여</div>
             <div class="event-card event">AtCoder 대회 ABC 난이도 참여</div>
-            <div class="event-card event">2025.06 : 제38회 네전따 N.EX.T 행사 참여</div>
+            <div class="event-card event"><span class="month-badge">06월</span>제38회 네전따 N.EX.T 행사 참여</div>
             <div class="event-card event">구름 COMMIT 세션 참여</div>
-            <div class="event-card award">2025.07 : '심각한 테라폼 중독입니다' 도서 이벤트 당첨</div>
-            <div class="event-card event">2025.08 : Alibaba Cloud 데이터베이스 세션 참여</div>
+            <div class="event-card award"><span class="month-badge">07월</span>'심각한 테라폼 중독입니다' 도서 이벤트 당첨</div>
+            <div class="event-card event"><span class="month-badge">08월</span>Alibaba Cloud 데이터베이스 세션 참여</div>
             <div class="event-card event">NCUC 수도권 남부 소모임 5회 참여</div>
-            <div class="event-card project">2025.09 : 클라우드 자원 사용량 확인 자동화</div>
+            <div class="event-card project"><span class="month-badge">09월</span>클라우드 자원 사용량 확인 자동화</div>
             <div class="event-card event">Cloud Native Korea Community Day 2025 행사 참여</div>
             <div class="event-card event">AWSKRUG 서버리스 #serverless 모임 참여</div>
         </div>
@@ -372,6 +480,8 @@
 <div class="progress-bar-container">
     <div class="progress-bar" id="progress-bar"></div>
 </div>
+
+<div class="nav-hint">◀ 스크롤로 이동 ▶</div>
 
 <div class="footer">
     © 2024 changki123. All rights reserved. Feel free to steal.
@@ -405,33 +515,88 @@
         });
     }
 
+    function updateCarousel() {
+        sections.forEach((section, index) => {
+            section.classList.remove('prev', 'active', 'next', 'hidden');
+            
+            if (index === currentIndex - 1) {
+                section.classList.add('prev');
+            } else if (index === currentIndex) {
+                section.classList.add('active');
+            } else if (index === currentIndex + 1) {
+                section.classList.add('next');
+            } else {
+                section.classList.add('hidden');
+            }
+        });
+
+        // 배경색 업데이트
+        const progressFactor = currentIndex / (sections.length - 1);
+        const [r, g, b] = interpolateColor(startColor, endColor, progressFactor);
+        document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+        // 진행 바 업데이트
+        const progressWidth = progressFactor * 100;
+        progressBar.style.width = `${progressWidth}%`;
+        
+        // 네비게이션 버튼 활성화 업데이트
+        updateNavButtons();
+    }
+    
+    function jumpToYear(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+    
+    function updateNavButtons() {
+        const buttons = document.querySelectorAll('.top-nav button');
+        buttons.forEach((btn, idx) => {
+            btn.classList.remove('active');
+            const yearIndex = [0, 5, 10, 15, 20][idx];
+            if (currentIndex === yearIndex) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
     setRandomPositions();
+    updateCarousel();
+    updateNavButtons();
 
     window.addEventListener('wheel', (event) => {
         if (isScrolling) return;
 
-        sections[currentIndex].classList.remove('active');
-
         if (event.deltaY > 0) {
-            currentIndex = Math.min(currentIndex + 2, sections.length - 2);
+            // 다음으로
+            currentIndex = Math.min(currentIndex + 1, sections.length - 1);
         } else {
-            currentIndex = Math.max(currentIndex - 2, 0);
+            // 이전으로
+            currentIndex = Math.max(currentIndex - 1, 0);
         }
 
-        sections[currentIndex].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-        sections[currentIndex].classList.add('active');
-
-        const progressFactor = currentIndex / (sections.length - 2);
-        const [r, g, b] = interpolateColor(startColor, endColor, progressFactor);
-        document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-
-        const progressWidth = progressFactor * 100;
-        progressBar.style.width = `${progressWidth}%`;
+        updateCarousel();
 
         isScrolling = true;
         setTimeout(() => {
             isScrolling = false;
-        }, 500);
+        }, 800);
+    });
+
+    // 키보드 네비게이션
+    window.addEventListener('keydown', (event) => {
+        if (isScrolling) return;
+        
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+            currentIndex = Math.min(currentIndex + 1, sections.length - 1);
+            updateCarousel();
+            isScrolling = true;
+            setTimeout(() => { isScrolling = false; }, 800);
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+            currentIndex = Math.max(currentIndex - 1, 0);
+            updateCarousel();
+            isScrolling = true;
+            setTimeout(() => { isScrolling = false; }, 800);
+        }
     });
 </script>
 
